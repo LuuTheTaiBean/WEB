@@ -1,0 +1,117 @@
+header {
+  /* background-color: #10375c; */
+  background-color: #3ea1fd;
+}
+main {
+  padding-top: 126px;
+  background-color: #3ea1fd99;
+}
+
+.icon {
+  background-color: #0d6efd;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+
+.icon:hover {
+  background-color: #fff;
+}
+
+.teacher-card {
+  background-color: #d5e7f9cc;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.teacher-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* NEW */
+/* Kiểu nút điều khiển */
+.custom-control {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hiệu ứng khi di chuột */
+.custom-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+/* Nút "Previous" */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Tạo hình mũi tên */
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-control-prev-icon::before {
+  border-left: 3px solid white;
+  border-top: 3px solid white;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.carousel-control-next-icon::before {
+  border-left: 3px solid white;
+  border-top: 3px solid white;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* Đặt các nút bên trái và bên phải */
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+span {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.icon-footer {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}

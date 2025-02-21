@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lưu Thế Tài</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="fixed-top">
+      <!-- Navbar -->
+      <nav class="container navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand me-5" href="#">
+            <img src="/img/Logo.svg" alt="" />
+          </a>
+          <button
+            class="navbar-toggler text-bg-primary"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse me-5">
+            <ul
+              class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-between w-100"
+            >
+              <li class="nav-item icon">
+                <a class="nav-link active" href="#"
+                  ><i class="fa-solid fa-house"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-language"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-user-secret"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-yin-yang"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-gamepad"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-square-root-variable"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-user-group"></i
+                ></a>
+              </li>
+              <li class="nav-item icon ms-5">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-hammer"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-comment-dots"></i
+                ></a>
+              </li>
+              <li class="nav-item icon">
+                <a class="nav-link" href="#"
+                  ><i class="fa-solid fa-bell"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Offcanvas -->
+      <div
+        class="offcanvas offcanvas-end w-75"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link active" href="#"
+                ><i class="fa-solid fa-house p-2"></i>Home
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#"
+                ><i class="fa-solid fa-language p-2"></i>Teacher
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-user-secret p-2 me-2"></i>Information
+                Technology
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-yin-yang p-2 me-2"></i>Horoscope
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-gamepad p-2 me-1"></i>Entertainment
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#"
+                ><i class="fa-solid fa-square-root-variable p-2 me-2"></i>Math
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#"
+                ><i class="fa-solid fa-user-group p-2 me-1"></i>Student
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3 mt-5"
+            >
+              <a class="nav-link" href="#"
+                ><i class="fa-solid fa-hammer p-2 me-1"></i>Settings
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-comment-dots p-2 me-1"></i>Messenger
+              </a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center m-1 bg-primary rounded-3"
+            >
+              <a class="nav-link" href="#"
+                ><i class="fa-solid fa-bell p-2 me-1"></i>Notification
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- HEADER -->
+      <section class="container py-3" style="background-color: #3ea1fd47">
+        <div class="row align-items-center">
+          <!-- Khối trái -->
+          <div class="col-md-5 text-center m-md-0">
+            <img
+              src="/img/header.svg"
+              alt="Image Description"
+              class="img-fluid d-none d-md-inline"
+            />
+            <img
+              src="/img/header-small.svg"
+              alt="Image Description"
+              class="img-fluid d-md-none d-sm-inline"
+            />
+          </div>
+          <!-- Khối phải -->
+          <div class="col-md-6 text-white fs-5">
+            <h2 class="mb-3 mt-2 mt-md-0">
+              Conquer knowledge – Develop skills, reach success!
+            </h2>
+            <p class="mb-3">
+              Join our courses to expand your understanding and achieve your
+              goals.
+            </p>
+            <div class="d-flex d-md-block justify-content-center">
+              <a
+                href="/Home-Sign-Up/index.html"
+                class="btn btn-primary me-2 rounded-pill"
+              >
+                <i class="fa-solid fa-user-plus me-1"></i>
+                <div class="d-inline-flex align-items-center">Sign up</div>
+              </a>
+              <a href="#" class="btn btn-primary me-2 rounded-pill">
+                <i class="fa-solid fa-right-to-bracket me-1"></i>
+                <div class="d-inline-flex align-items-center">Log in</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- MEETING -->
+      <section class="container py-3" style="background-color: #3588d7">
+        <!-- Hiển thị 4 khối trên màn hình lớn -->
+        <div class="row d-none d-lg-flex">
+          <!-- Khối 1 -->
+          <div class="col-lg-3 col-md-6">
+            <div class="teacher-card">
+              <a
+                href="https://www.facebook.com/profile.php?id=586080147&locale=vi_VN"
+              >
+                <img
+                  class="img-fluid rounded-circle mb-2"
+                  src="/img/teacher1.jpg"
+                  alt="Nguyen Huu Trung"
+              /></a>
+
+              <div class="d-flex align-items-center justify-content-center">
+                <a class="nav-link icon btn btn-primary me-2" href="#"
+                  ><i class="fa-solid fa-language"></i
+                ></a>
+                <span>Nguyen Huu Trung</span>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 2 -->
+          <div class="col-lg-3 col-md-6">
+            <div class="teacher-card">
+              <a href="https://www.facebook.com/Kiennguyen9813?locale=vi_VN">
+                <img
+                  class="img-fluid rounded-circle mb-2"
+                  src="/img/teacher2.jpg"
+                  alt="Nguyen Huu Kien"
+              /></a>
+
+              <div class="d-flex align-items-center justify-content-center">
+                <a class="nav-link icon btn btn-primary me-2" href="#"
+                  ><i class="fa-solid fa-yin-yang"></i
+                ></a>
+                <span>Nguyen Huu Kien</span>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 3 -->
+          <div class="col-lg-3 col-md-6">
+            <div class="teacher-card">
+              <a href="https://www.facebook.com/ngatsandai?locale=vi_VN">
+                <img
+                  class="img-fluid rounded-circle mb-2"
+                  src="/img/teacher3.jpg"
+                  alt="Luu Thi Ngat"
+              /></a>
+
+              <div class="d-flex align-items-center justify-content-center">
+                <a class="nav-link icon btn btn-primary me-2" href="#"
+                  ><i class="fa-solid fa-language"></i
+                ></a>
+                <span>Luu Thi Ngat</span>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 4 -->
+          <div class="col-lg-3 col-md-6">
+            <div class="teacher-card">
+              <a
+                href="https://www.facebook.com/profile.php?id=100085317083108&locale=vi_VN"
+              >
+                <img
+                  class="img-fluid rounded-circle mb-2"
+                  src="/img/teacher4.jpg"
+                  alt="Luu The Tai"
+              /></a>
+
+              <div class="d-flex align-items-center justify-content-center">
+                <a class="nav-link icon btn btn-primary me-2" href="#"
+                  ><i class="fa-solid fa-user-secret"></i
+                ></a>
+                <span>Luu The Tai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hiển thị trên điện thoại -->
+        <div
+          id="teacherCarousel"
+          class="carousel slide d-lg-none"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Khối 1 -->
+            <div class="carousel-item active">
+              <div class="teacher-card text-center">
+                <a
+                  href="https://www.facebook.com/profile.php?id=586080147&locale=vi_VN"
+                >
+                  <img
+                    class="img-fluid rounded-circle mb-2"
+                    src="/img/teacher1.jpg"
+                    alt="Nguyen Huu Trung"
+                /></a>
+
+                <div class="d-flex align-items-center justify-content-center">
+                  <a class="nav-link icon btn btn-primary me-2" href="#"
+                    ><i class="fa-solid fa-language"></i
+                  ></a>
+                  <span>Nguyen Huu Trung</span>
+                </div>
+              </div>
+            </div>
+            <!-- Khối 2 -->
+            <div class="carousel-item">
+              <div class="teacher-card text-center">
+                <a href="https://www.facebook.com/Kiennguyen9813?locale=vi_VN"
+                  ><img
+                    class="img-fluid rounded-circle mb-2"
+                    src="/img/teacher2.jpg"
+                    alt="Nguyen Huu Kien"
+                /></a>
+
+                <div class="d-flex align-items-center justify-content-center">
+                  <a class="nav-link icon btn btn-primary me-2" href="#"
+                    ><i class="fa-solid fa-yin-yang"></i
+                  ></a>
+                  <span>Nguyen Huu Kien</span>
+                </div>
+              </div>
+            </div>
+            <!-- Khối 3 -->
+            <div class="carousel-item">
+              <div class="teacher-card text-center">
+                <a href="https://www.facebook.com/ngatsandai?locale=vi_VN">
+                  <img
+                    class="img-fluid rounded-circle mb-2"
+                    src="/img/teacher3.jpg"
+                    alt="Luu Thi Ngat"
+                /></a>
+
+                <div class="d-flex align-items-center justify-content-center">
+                  <a class="nav-link icon btn btn-primary me-2" href="#"
+                    ><i class="fa-solid fa-language"></i
+                  ></a>
+                  <span>Luu Thi Ngat</span>
+                </div>
+              </div>
+            </div>
+            <!-- Khối 4 -->
+            <div class="carousel-item">
+              <div class="teacher-card text-center">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100085317083108&locale=vi_VN"
+                  ><img
+                    class="img-fluid rounded-circle mb-2"
+                    src="/img/teacher4.jpg"
+                    alt="Luu The Tai"
+                /></a>
+
+                <div class="d-flex align-items-center justify-content-center">
+                  <a class="nav-link icon btn btn-primary me-2" href="#"
+                    ><i class="fa-solid fa-user-secret"></i
+                  ></a>
+                  <span>Luu The Tai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Nút điều hướng -->
+          <a
+            class="carousel-control-prev opacity-0"
+            href="#teacherCarousel"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next opacity-0"
+            href="#teacherCarousel"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
+        <div class="row fs-5 mt-3 text-center justify-content-center">
+          <h2 class="text-white">Our members</h2>
+        </div>
+      </section>
+      <!-- WORK -->
+      <section class="container py-3" style="background-color: #bde1ff">
+        <div class="row fs-5">
+          <h2 class="text-primary">How it works</h2>
+          <p style="color: #747677">
+            Access valuable knowledge in various fields. Your path to success
+            begins with the first steps.
+          </p>
+        </div>
+        <div class="row">
+          <!-- Khối 1 -->
+          <div class="col-lg-4 pb-md-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #3ea1fd99"
+            >
+              <div>
+                <img class="img-fluid me-1" src="/img/Work__icon1.svg" alt="" />
+              </div>
+              <div class="flex-grow-1 ms-4">
+                <h3 class="fs-5">Search for your timetable</h3>
+                <p class="small text-secondary">
+                  This is your schedule. Contact me if you have any questions.
+                </p>
+                <!-- Thời khóa biểu -->
+                <a
+                  href="https://drive.google.com/drive/folders/1dY3QKeiB5SaWce4HZbsDUcleoFLdapbI?usp=drive_link"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 2 -->
+          <div class="col-lg-4 pb-md-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #3ea1fd99"
+            >
+              <div>
+                <img
+                  class="img-fluid me-md-3 me-0"
+                  src="/img/Work__icon2.svg"
+                  alt=""
+                />
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h3 class="fs-5">Find my homework</h3>
+                <p class="small text-secondary">
+                  Your homework is here. Please update it continuously.
+                </p>
+                <a
+                  href="https://drive.google.com/drive/folders/1mcadJ37Xc75WA0k6wS1anYLsuTqlJaxu?usp=drive_link"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 3 -->
+          <div class="col-lg-4 pb-md-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #3ea1fd99"
+            >
+              <div>
+                <img
+                  class="img-fluid me-md-3 me-0"
+                  src="/img/Work__icon3.svg"
+                  alt=""
+                />
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h3 class="fs-5">Search for tuition</h3>
+                <p class="small text-secondary">
+                  Quickly search for your tuition fees. Contact us for more
+                  information.
+                </p>
+                <a
+                  href="./Tuition/index.html"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Khối 4 -->
+          <div class="col-lg-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #3ea1fd99"
+            >
+              <div>
+                <img
+                  class="img-fluid me-md-3 me-0"
+                  src="/img/Work__icon4.svg"
+                  alt=""
+                />
+              </div>
+              <div class="flex-grow-1 ms-4">
+                <h3 class="fs-5">Your notebook is available here</h3>
+                <p class="small text-secondary">
+                  Please write your essay here. Make sure to choose the correct
+                  notebook.
+                </p>
+                <a
+                  href="https://drive.google.com/drive/folders/1V1m_koMgyHlidLoFm-K1A3erUFgy54mB?usp=sharing"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- NEW -->
+      <section class="container py-3" style="background-color: #75c3ff">
+        <div class="row fs-5">
+          <h2 class="text-white text-center">Our news</h2>
+          <p style="color: #fff" class="text-center">
+            Read our regular blog to stay updated on the latest courses, tips,
+            and information.
+          </p>
+        </div>
+        <!-- Hiển thị 3 khối trên màn hình lớn (PC/laptop) -->
+        <div class="row d-none d-lg-flex">
+          <!-- Block 1 -->
+          <div class="col-lg-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #fff"
+            >
+              <div class="flex-grow-1">
+                <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                <hr class="my-2" />
+                <h3 class="small">
+                  Do you have any tips to help me speak English more fluently in
+                  a short time?
+                </h3>
+                <a
+                  href="#"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                  >Read more</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Block 2 -->
+          <div class="col-lg-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #fff"
+            >
+              <div class="flex-grow-1">
+                <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                <hr class="my-2" />
+                <h3 class="small">
+                  Do you know any good resources or websites that can help me
+                  improve my self-study?
+                </h3>
+                <a
+                  href="#"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                  >Read more</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Block 3 -->
+          <div class="col-lg-4">
+            <div
+              class="d-flex align-items-center p-3 border rounded mb-lg-0 mb-3"
+              style="background-color: #fff"
+            >
+              <div class="flex-grow-1">
+                <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                <hr class="my-2" />
+                <h3 class="small">
+                  Do you have any advice to help me feel more confident when
+                  speaking English?
+                </h3>
+                <a
+                  href="#"
+                  class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                  >Read more</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hiển thị Carousel trên điện thoại (dưới 992px) -->
+        <div
+          id="carouselExample"
+          class="carousel slide d-lg-none"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Block 1 -->
+            <div class="carousel-item active">
+              <div
+                class="d-flex align-items-center p-3 border rounded mb-3"
+                style="background-color: #fff"
+              >
+                <div class="flex-grow-1">
+                  <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                  <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                  <hr class="my-2" />
+                  <h3 class="small">
+                    Do you have any tips to help me speak English more fluently
+                    in a short time?
+                  </h3>
+                  <a
+                    href="#"
+                    class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                    >Read more</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Block 2 -->
+            <div class="carousel-item">
+              <div
+                class="d-flex align-items-center p-3 border rounded mb-3"
+                style="background-color: #fff"
+              >
+                <div class="flex-grow-1">
+                  <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                  <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                  <hr class="my-2" />
+                  <h3 class="small">
+                    Do you know any good resources or websites that can help me
+                    improve my self-study?
+                  </h3>
+                  <a
+                    href="#"
+                    class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                    >Read more</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Block 3 -->
+            <div class="carousel-item">
+              <div
+                class="d-flex align-items-center p-3 border rounded mb-3"
+                style="background-color: #fff"
+              >
+                <div class="flex-grow-1">
+                  <img class="img-fluid" src="/img/nhap.JPG" alt="" />
+                  <p class="small text-secondary mt-2 mb-0">21 November 2021</p>
+                  <hr class="my-2" />
+                  <h3 class="small">
+                    Do you have any advice to help me feel more confident when
+                    speaking English?
+                  </h3>
+                  <a
+                    href="#"
+                    class="btn btn-primary rounded-pill d-inline-flex align-items-center justify-content-center"
+                    >Read more</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Nút điều hướng -->
+          <a
+            class="carousel-control-prev opacity-0"
+            href="#teacherCarousel"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next opacity-0"
+            href="#teacherCarousel"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
+      </section>
+      <!-- DOWNLOAD -->
+      <section class="container py-3" style="background-color: #2e80ce">
+        <div class="row align-items-center">
+          <!-- Khối trái -->
+          <div class="col-md-5 text-center m-md-0">
+            <img
+              src="/img/Download__image.svg"
+              alt="Image Description"
+              class="img-fluid w-50 d-none d-md-inline"
+            />
+          </div>
+          <!-- Khối phải -->
+          <div class="col-md-6 text-white fs-5 mb-md-2">
+            <h2 class="mb-3 mt-2 mt-md-0">
+              Confident in your knowledge and skills.
+            </h2>
+            <p class="mb-3">
+              If you find it inconvenient, feel free to download the app to your
+              device for the best experience, allowing you to access all our
+              content and features anytime, anywhere.
+            </p>
+            <div class="text-lg-start text-center">
+              <a href="#" class="me-3"
+                ><img src="/img/Download__GooglePlay.svg" alt=""
+              /></a>
+              <a href="#"><img src="/img/Download__AppStore.svg" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- EXPERIENCE -->
+      <section class="container py-5" style="background-color: #d9f8ff">
+        <div class="row align-items-center">
+          <!-- Khối trái -->
+          <div class="col-md-3 text-center m-md-0">
+            <img
+              src="/img/Avatar1.png"
+              alt="Image Description"
+              class="img-fluid mb-2"
+            />
+            <h2 class="small">Peter Moor</h2>
+            <p class="small mt-2 text-secondary">Senior high school student</p>
+          </div>
+          <!-- Khối phải -->
+          <div class="col-md-8 fs-5" style="color: #2e80d7">
+            <img src="/img/Quotes__user.svg" alt="" />
+            <p class="mb-3">
+              The learning environment is very friendly, and the facilities are
+              well-equipped, making it comfortable to study. I especially enjoy
+              the practical lessons because they help me apply what I have
+              learned in a real-life context."
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- THANK -->
+      <section class="container py-3" style="background-color: #aad3fa">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-8 text-white text-center fs-5">
+            <h2 class="mb-3 mt-2 mt-md-0" style="color: #2e80d7">
+              Always welcoming new students
+            </h2>
+            <p class="mb-3 text-secondary">
+              Take control of your education and receive the personalized
+              support you deserve. Call 0943.527.168 to schedule.
+            </p>
+            <a
+              href="tel:+84943527168"
+              class="btn btn-primary me-2 rounded-pill"
+            >
+              <i class="fa-solid fa-calendar-check"></i>
+              <div class="d-inline-flex align-items-center">Appointment</div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer style="background-color: #10375c">
+      <section class="container py-3">
+        <div class="row">
+          <!-- Khối 1 -->
+          <div class="col-lg-4">
+            <div class="p-3 mb-lg-0 mb-3">
+              <a href="#">
+                <img class="img-fluid mb-3" src="/img/Logo.svg" alt="" />
+              </a>
+              <p class="text-secondary small">
+                Access valuable knowledge in various fields. Your path to
+                success begins with the first steps.
+              </p>
+              <b class="text-white mb-3">Subscribe</b>
+              <p class="text-white small">
+                Subscribe to our newsletter for the latest news and updates in
+                education.
+              </p>
+            </div>
+          </div>
+          <!-- Khối 2 -->
+          <div class="col-lg-4">
+            <div class="p-3 mb-lg-0 mb-3">
+              <b class="text-white d-block mb-2">Contact Information</b>
+              <!-- PHONE -->
+              <a
+                href="tel:+84862826616"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-solid fa-phone"></i>
+                <span> Phone: +84862826616 </span>
+              </a>
+              <!-- TIKTOK -->
+              <a
+                href="https://www.tiktok.com/@taitaptenh?lang=vi-VN"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-brands fa-tiktok"></i>
+                <span> TikTok: Tai tap tenh </span>
+              </a>
+              <!-- FACEBOOK -->
+              <a
+                href="https://www.facebook.com/profile.php?id=100085317083108&locale=vi_VN"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-brands fa-facebook"></i>
+                <span> Facebook: Luu The Tai </span>
+              </a>
+              <!-- INSTAGRAM -->
+              <a
+                href="https://www.instagram.com/le.et16?igsh=ZzBlNmUydTg3YzI4&utm_source=qr&fbclid=IwY2xjawIH5ztleHRuA2FlbQIxMAABHYacCscuSpQl54gAJfEqzla0Kpp7M-vGPyb1RjuVYGdDIA66Br9RplyX5A_aem_NBtwOQiCTMo1ZWy13vuM4g"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-brands fa-instagram"></i>
+                <span> Instagram: Luu The Tai </span>
+              </a>
+              <!-- YOUTUBE -->
+              <a
+                href="https://www.youtube.com/@TheTaiE-MIT"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-brands fa-youtube"></i>
+                <span> Youtube: Luu The Tai </span>
+              </a>
+              <!-- TWITTER -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-brands fa-x-twitter"></i>
+                <span> X-twitter </span>
+              </a>
+              <!-- LINKEDIN -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-brands fa-linkedin-in"></i>
+                <span> LinkedIn </span>
+              </a>
+              <!-- EMAIL -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-solid fa-envelope"></i>
+                <span> Email: luuthetay@gmail.com </span>
+              </a>
+              <!-- ADDRESS -->
+              <a
+                href="https://maps.app.goo.gl/FszE5Vm8hc9a799TA?g_st=iz"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-solid fa-location-dot"></i>
+                <span> Address: Thai Hac, Viet Thuan, Vu Thu </span>
+              </a>
+            </div>
+          </div>
+          <!-- Khối 3 -->
+          <div class="col-lg-4">
+            <div class="p-3 mb-lg-0 mb-3">
+              <b class="text-white d-block mb-2">Support</b>
+              <!-- GRADUATE -->
+              <a
+                href="https://www.google.com/maps/place/%C4%90a%CC%A3i+Ho%CC%A3c+B%C3%B4n+Ba/@16.744202,107.1789191,794m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3140fb4cc6d7ec31:0xf9ad5ab7d37dfcb8!8m2!3d16.744202!4d107.1789191!16s%2Fg%2F11c1s3rfgp?entry=ttu&g_ep=EgoyMDI1MDEyNy4wIKXMDSoASAFQAw%3D%3D"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-solid fa-graduation-cap"></i>
+                <span> Graduate: Bon Ba University </span>
+              </a>
+              <!-- GITHUB -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-brands fa-github"></i>
+                <span> Github: luuthetaibean.io </span>
+              </a>
+              <!-- STORE -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-solid fa-shop"></i>
+                <span> Store: 25, Dinh Tien Hoang, Hoan Kiem </span>
+              </a>
+              <!-- HOTEL -->
+              <a href="#" class="btn p-0 text-white d-flex align-items-center">
+                <i class="icon-footer fa-solid fa-hotel"></i>
+                <span> Hotel: 123, Ba Trieu, Hoan Kiem </span>
+              </a>
+              <!-- MUSIC -->
+              <a
+                href="./WEB NHẠC/index.html"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-solid fa-music"></i>
+                <span> Music: Luu The Tai</span>
+              </a>
+              <!-- BANK -->
+              <a
+                href="/img/QR-BANK.jpg"
+                class="btn p-0 text-white d-flex align-items-center"
+              >
+                <i class="icon-footer fa-solid fa-building-columns"></i>
+                <span> Techcombank: 982459626789 </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <hr class="text-white mx-auto w-75" />
+          <div class="text-center text-secondary">
+            The website was completed on January 30, 2025, by Luu The Tai.
+          </div>
+        </div>
+      </section>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom JS -->
+    <script src="./main.js"></script>
+  </body>
+</html>
