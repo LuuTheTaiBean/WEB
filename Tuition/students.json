@@ -1,0 +1,62 @@
+[
+  {
+    "id": "100901",
+    "name": "Vũ Văn Tiến",
+    "month": "1",
+    "year": "2025",
+    "sessions": ["9"],
+    "cost": "100.000",
+    "paid": "0",
+    "total": "100.000",
+    "lyric": "Một trăm nghìn đồng chẵn",
+    "password": "123456"
+  },
+  {
+    "id": "100902",
+    "name": "Tạ Tiến Minh",
+    "month": "1",
+    "year": "2025",
+    "sessions": ["9", "13"],
+    "cost": "100.000",
+    "paid": "0",
+    "total": "200.000",
+    "lyric": "Hai trăm nghìn đồng chẵn",
+    "password": "234567"
+  },
+  {
+    "id": "101203",
+    "name": "Lê Trần Bảo Lộc",
+    "month": "1",
+    "year": "2025",
+    "sessions": ["8", "11", "15"],
+    "cost": "150.000",
+    "paid": "0",
+    "total": "450.000",
+    "lyric": "Bốn trăm năm mươi nghìn đồng chẵn",
+    "password": "345678"
+  },
+  {
+    "id": "101004",
+    "name": "Đặng Đức Mạnh",
+    "month": "1",
+    "year": "2025",
+    "sessions": ["8", "9", "12", "14"],
+    "cost": "100.000",
+    "paid": "0",
+    "total": "400.000",
+    "lyric": "Bốn trăm nghìn đồng chẵn",
+    "password": "456789"
+  },
+  {
+    "id": "100905",
+    "name": "Khổng Minh Đăng",
+    "month": "1",
+    "year": "2025",
+    "sessions": ["9", "13", "15"],
+    "cost": "100.000",
+    "paid": "0",
+    "total": "300.000",
+    "lyric": "Ba trăm nghìn đồng chẵn",
+    "password": "567890"
+  }
+]
