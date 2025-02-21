@@ -1,0 +1,165 @@
+a {
+  text-decoration: none;
+}
+header {
+  background-color: #3ea1fd;
+}
+
+/* Cấu hình Offcanvas */
+
+.offcanvas-header {
+  background-color: #3ea1fd;
+}
+
+.offcanvas-body {
+  padding: 0;
+}
+
+.icon-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+  width: 100%;
+  justify-content: center;
+  padding: 10px 0;
+}
+.icon {
+  background-color: #0d6efd;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+
+.icon:hover {
+  background-color: #fff;
+  color: #0d6efd;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 5px 15px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  font-size: 14px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+
+.suggestions li:hover,
+.suggestions li.selected {
+  background-color: #d2eafe;
+  border-radius: 5px;
+}
+
+/* Cố định các biểu tượng ở dưới cùng trên các thiết bị có kích thước từ 767px đến 992px */
+@media (min-width: 767px) and (max-width: 992px) {
+  .icon-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .icon-bar .icon {
+    background-color: #0d6efd;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 999px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .icon-bar .icon:hover {
+    background-color: #fff;
+    color: #0d6efd;
+  }
+
+  /* Ẩn phần navbar trên điện thoại */
+  .navbar-nav {
+    display: none;
+  }
+}
+
+/* Cố định các biểu tượng ở dưới cùng trên thiết bị di động với màn hình nhỏ hơn 767px */
+@media (max-width: 767px) {
+  .icon-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .icon-bar .icon {
+    background-color: #0d6efd;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 999px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .icon-bar .icon:hover {
+    background-color: #fff;
+    color: #0d6efd;
+  }
+
+  /* Ẩn phần navbar trên điện thoại */
+  .navbar-nav {
+    display: none;
+  }
+}
