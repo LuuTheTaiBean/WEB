@@ -163,3 +163,12 @@ header {
     display: none;
   }
 }
+
+.song-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.song-list.show {
+  max-height: 300px; /* Adjust the height as needed */
+}

@@ -18,7 +18,7 @@
     <header class="fixed-top py-1">
       <nav class="container navbar navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand me-5" href="/index.html">
+          <a class="navbar-brand me-5" href="../index.html">
             <img src="../img/Logo.svg" alt="" />
           </a>
           <button
@@ -175,49 +175,45 @@
       }
 
       function displayArtistsAndSongs() {
-        let artistSongList = document.getElementById("artistSongList");
         let artists = [...new Set(songs.map((song) => song.artist))];
-        artistSongList.innerHTML = artists
-          .map((artist) => {
-            let artistSongs = songs.filter((song) => song.artist === artist);
-            let songItems = artistSongs
-              .map(
-                (song) =>
-                  `<li class='list-group-item ps-4' onclick="displaySongByTitle('${song.title}')">${song.title}</li>`
-              )
-              .join("");
-            return `<li class='list-group-item fw-bold d-flex justify-content-between' onclick="toggleSongs('${artist}')">${artist} <span class='badge bg-primary'>${artistSongs.length}</span></li><ul class='list-unstyled d-none' id='songs-${artist}'>${songItems}</ul>`;
-          })
-          .join("");
-        // Update offcanvas list
 
-        let offcanvasArtistSongList = document.getElementById(
-          "offcanvasArtistSongList"
-        );
+        const renderArtistSongList = (elementId, hideSongs = false) => {
+          let artistSongList = document.getElementById(elementId);
+          artistSongList.innerHTML = artists
+            .map((artist) => {
+              let artistSongs = songs.filter((song) => song.artist === artist);
+              let songItems = artistSongs
+                .map(
+                  (song) =>
+                    `<li class='list-group-item ps-4' onclick="displaySongByTitle('${song.title}')">${song.title}</li>`
+                )
+                .join("");
+              return `
+          <li class='list-group-item fw-bold d-flex justify-content-between' onclick="toggleSongs('${artist}')">
+            ${artist} <span class='badge bg-primary'>${
+                artistSongs.length
+              }</span>
+          </li>
+          <ul class='list-unstyled song-list ${
+            hideSongs ? "" : ""
+          }' id='songs-${artist}'>
+            ${songItems}
+          </ul>
+        `;
+            })
+            .join("");
+        };
 
-        offcanvasArtistSongList.innerHTML = artists
-
-          .map((artist) => {
-            let artistSongs = songs.filter((song) => song.artist === artist);
-
-            let songItems = artistSongs
-
-              .map(
-                (song) =>
-                  `<li class='list-group-item ps-4' onclick="displaySongByTitle('${song.title}')">${song.title}</li>`
-              )
-
-              .join("");
-
-            return `<li class='list-group-item fw-bold d-flex justify-content-between' onclick="toggleSongs('${artist}')">${artist} <span class='badge bg-primary'>${artistSongs.length}</span></li><ul class='list-unstyled' id='songs-${artist}'>${songItems}</ul>`;
-          })
-
-          .join("");
+        renderArtistSongList("artistSongList", true); // Danh sách chính
+        renderArtistSongList("offcanvasArtistSongList"); // Offcanvas
       }
 
       function toggleSongs(artist) {
-        let songList = document.getElementById(`songs-${artist}`);
-        songList.classList.toggle("d-none");
+        document.querySelectorAll(".song-list").forEach((list) => {
+          list.id === `songs-${artist}`
+            ? list.classList.toggle("show") // Mở/đóng danh sách được chọn
+            : list.classList.remove("show"); // Thu gọn các danh sách khác
+        });
       }
 
       function displaySongByTitle(title) {
