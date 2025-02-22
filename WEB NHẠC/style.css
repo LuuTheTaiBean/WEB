@@ -167,7 +167,7 @@ header {
 .song-list {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 1s ease;
+  transition: max-height 0s ease;
 }
 .song-list.show {
   max-height: 300px; /* Adjust the height as needed */
