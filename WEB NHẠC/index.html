@@ -287,8 +287,9 @@
 
       loadSongs();
       function toggleAudio() {
+        if (!audio || !playIcon) return;
         if (audio.paused) {
-          audio.play();
+          audio.play().catch((err) => console.error(err));
           playIcon.classList.remove("fa-play");
           playIcon.classList.add("fa-pause");
         } else {
@@ -297,6 +298,11 @@
           playIcon.classList.add("fa-play");
         }
       }
+      // Khi audio kết thúc, tự động chuyển icon về "play"
+      audio.addEventListener("ended", () => {
+        playIcon.classList.remove("fa-pause");
+        playIcon.classList.add("fa-play");
+      });
     </script>
   </body>
 </html>
