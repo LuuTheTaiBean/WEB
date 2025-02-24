@@ -43,6 +43,17 @@ header {
   color: #0d6efd;
 }
 
+.icon-phone {
+  background-color: #0d6efd;
+  color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  font-size: 15px;
+}
+
 .search-container {
   display: flex;
   align-items: center;
