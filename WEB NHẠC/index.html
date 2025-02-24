@@ -137,8 +137,10 @@
     </div>
     <!-- Các biểu tượng cố định ở dưới cùng trên điện thoại -->
     <div class="icon-bar d-lg-none bg-primary px-5 py-2">
-      <a href="#" class="icon">
-        <i class="fa-solid fa-play"></i>
+      <!-- Audio Player -->
+      <audio id="mobileAudioPlayer"></audio>
+      <a href="#" class="icon" onclick="toggleAudioMobile()">
+        <i class="fa-solid fa-play" id="playIconMobile"></i>
       </a>
       <a href="#" class="icon">
         <i class="fa-solid fa-microphone-lines"></i>
@@ -163,6 +165,8 @@
       let selectedIndex = -1; // Variable to track selected suggestion
       let audio = document.getElementById("audioPlayer");
       let playIcon = document.getElementById("playIcon");
+      let mobileAudio = document.getElementById("mobileAudioPlayer");
+      let playIconMobile = document.getElementById("playIconMobile");
       async function loadSongs() {
         try {
           const response = await fetch("data.json");
@@ -240,6 +244,7 @@
         document.getElementById("songDescription").textContent =
           song.description;
         document.getElementById("audioPlayer").src = song.official;
+        document.getElementById("mobileAudioPlayer").src = song.official;
       }
 
       function searchSong(event) {
@@ -303,6 +308,26 @@
       audio.addEventListener("ended", () => {
         playIcon.classList.remove("fa-pause");
         playIcon.classList.add("fa-play");
+      });
+      // Hàm cho điện thoại
+      function toggleAudioMobile() {
+        if (mobileAudio.paused) {
+          mobileAudio
+            .play()
+            .catch((err) => console.error("Lỗi phát nhạc:", err));
+          playIconMobile.classList.remove("fa-play");
+          playIconMobile.classList.add("fa-pause");
+        } else {
+          mobileAudio.pause();
+          playIconMobile.classList.remove("fa-pause");
+          playIconMobile.classList.add("fa-play");
+        }
+      }
+
+      // Khi nhạc kết thúc, đổi lại icon thành "play"
+      mobileAudio.addEventListener("ended", () => {
+        playIconMobile.classList.remove("fa-pause");
+        playIconMobile.classList.add("fa-play");
       });
     </script>
   </body>
