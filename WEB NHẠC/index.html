@@ -36,10 +36,7 @@
             >
               <!-- Các phần tử khác ở đây -->
               <!-- Thêm thẻ audio ẩn -->
-              <audio
-                id="audioPlayer"
-                src="Audio/Boney M (Bahama Mama).mp3"
-              ></audio>
+              <audio id="audioPlayer"></audio>
               <!-- Biểu tượng Play -->
               <li class="nav-item icon">
                 <a class="nav-link active" href="#" onclick="toggleAudio()">
@@ -242,6 +239,7 @@
         document.getElementById("songLink").textContent = song.link;
         document.getElementById("songDescription").textContent =
           song.description;
+        document.getElementById("audioPlayer").src = song.official;
       }
 
       function searchSong(event) {
