@@ -230,7 +230,6 @@
         currentIndex = songs.indexOf(song);
         displaySong();
       }
-
       function displaySong() {
         if (songs.length === 0) return;
         const song = songs[currentIndex];
@@ -240,7 +239,8 @@
         document.getElementById("songNumber").textContent = song.number;
         document.getElementById("songRating").textContent = song.rating;
         document.getElementById("songYear").textContent = song.year;
-        document.getElementById("songLink").textContent = song.link;
+        const songLink = document.getElementById("songLink");
+        songLink.innerHTML = `<a href="${song.link}" target="_blank">${song.link}</a>`;
         document.getElementById("songDescription").textContent =
           song.description;
         document.getElementById("audioPlayer").src = song.official;
