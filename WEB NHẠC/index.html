@@ -181,10 +181,8 @@
           console.error("Lỗi tải bài hát:", error);
         }
       }
-
       function displayArtistsAndSongs() {
         let artists = [...new Set(songs.map((song) => song.artist))];
-
         const renderArtistSongList = (elementId, hideSongs = false) => {
           let artistSongList = document.getElementById(elementId);
           artistSongList.innerHTML = artists
@@ -211,11 +209,9 @@
             })
             .join("");
         };
-
         renderArtistSongList("artistSongList", true); // Danh sách chính
         renderArtistSongList("offcanvasArtistSongList"); // Offcanvas
       }
-
       function toggleSongs(artist) {
         document.querySelectorAll(".song-list").forEach((list) => {
           list.id === `songs-${artist}`
@@ -223,7 +219,6 @@
             : list.classList.remove("show"); // Thu gọn các danh sách khác
         });
       }
-
       function displaySongByTitle(title) {
         let song = songs.find((song) => song.title === title);
         if (!song) return;
@@ -246,12 +241,10 @@
         document.getElementById("audioPlayer").src = song.official;
         document.getElementById("mobileAudioPlayer").src = song.official;
       }
-
       function searchSong(event) {
         let input = event.target.value.toLowerCase();
         let suggestionsList = document.getElementById("suggestionsList");
         suggestionsList.innerHTML = "";
-
         if (input) {
           let filteredSongs = songs.filter((song) =>
             song.title.toLowerCase().includes(input)
@@ -269,7 +262,6 @@
           suggestionsList.style.display = "none";
         }
       }
-
       function handleKeyPress(event) {
         let suggestionsList = document.getElementById("suggestionsList");
         let items = suggestionsList.getElementsByTagName("li");
@@ -286,7 +278,6 @@
           items[i].classList.toggle("selected", i === selectedIndex);
         }
       }
-
       document
         .getElementById("searchInput")
         .addEventListener("keydown", handleKeyPress);
@@ -323,12 +314,32 @@
           playIconMobile.classList.add("fa-play");
         }
       }
-
       // Khi nhạc kết thúc, đổi lại icon thành "play"
       mobileAudio.addEventListener("ended", () => {
         playIconMobile.classList.remove("fa-pause");
         playIconMobile.classList.add("fa-play");
       });
+      // Hàm phát bài ngẫu nhiên
+      function playRandomSong() {
+        if (songs.length === 0) return;
+        let randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * songs.length);
+        } while (randomIndex === currentIndex);
+        currentIndex = randomIndex;
+        displaySong();
+        audio.currentTime = 0; // Reset thời gian bài hát về 0
+        mobileAudio.currentTime = 0;
+        audio.play().catch((err) => console.error(err));
+        mobileAudio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+        playIcon.classList.remove("fa-play");
+        playIcon.classList.add("fa-pause");
+        playIconMobile.classList.remove("fa-play");
+        playIconMobile.classList.add("fa-pause");
+      }
+      // Sự kiện khi bài hát kết thúc -> phát bài ngẫu nhiên
+      audio.addEventListener("ended", playRandomSong);
+      mobileAudio.addEventListener("ended", playRandomSong);
     </script>
   </body>
 </html>
