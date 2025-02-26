@@ -279,43 +279,63 @@
 
       loadSongs();
 
-      // Cập nhật lại hàm toggleAudio để hoạt động đúng cho tất cả các bài hát
-      function toggleAudio() {
-        if (!audio || !playIcon) return;
-
-        if (audio.paused || audio.ended) {
-          audio
-            .play()
-            .then(() => {
-              playIcon.classList.remove("fa-play");
-              playIcon.classList.add("fa-pause");
-            })
-            .catch((err) => console.error("Lỗi phát nhạc:", err));
+      function syncIcons(isPlaying) {
+        if (isPlaying) {
+          playIcon.classList.remove("fa-play");
+          playIcon.classList.add("fa-pause");
+          playIconMobile.classList.remove("fa-play");
+          playIconMobile.classList.add("fa-pause");
         } else {
-          audio.pause();
           playIcon.classList.remove("fa-pause");
           playIcon.classList.add("fa-play");
+          playIconMobile.classList.remove("fa-pause");
+          playIconMobile.classList.add("fa-play");
+        }
+      }
+
+      // Cập nhật lại hàm toggleAudio để hoạt động đúng cho tất cả các bài hát
+      function toggleAudio() {
+        if (!audio || (!playIcon && !mobileAudio)) return;
+
+        if (audio.paused || audio.ended) {
+          audio.play();
+          if (mobileAudio) mobileAudio.play();
+          if (playIcon) {
+            playIcon.classList.remove("fa-play");
+            playIcon.classList.add("fa-pause");
+          }
+          if (typeof syncIcons === "function") syncIcons(true);
+        } else {
+          audio.pause();
+          if (mobileAudio) mobileAudio.pause();
+          if (playIcon) {
+            playIcon.classList.remove("fa-pause");
+            playIcon.classList.add("fa-play");
+          }
+          if (typeof syncIcons === "function") syncIcons(false);
         }
       }
 
       // Cho điện thoại
       function toggleAudioMobile() {
-        if (!mobileAudio || !playIconMobile) return;
+        if (!audio || !mobileAudio) return;
 
         if (mobileAudio.paused || mobileAudio.ended) {
-          mobileAudio
-            .play()
-            .then(() => {
-              playIconMobile.classList.remove("fa-play");
-              playIconMobile.classList.add("fa-pause");
-            })
-            .catch((err) =>
-              console.error("Lỗi phát nhạc trên điện thoại:", err)
-            );
+          mobileAudio.play();
+          audio.play();
+          if (playIconMobile) {
+            playIconMobile.classList.remove("fa-play");
+            playIconMobile.classList.add("fa-pause");
+          }
+          if (typeof syncIcons === "function") syncIcons(true);
         } else {
           mobileAudio.pause();
-          playIconMobile.classList.remove("fa-pause");
-          playIconMobile.classList.add("fa-play");
+          audio.pause();
+          if (playIconMobile) {
+            playIconMobile.classList.remove("fa-pause");
+            playIconMobile.classList.add("fa-play");
+          }
+          if (typeof syncIcons === "function") syncIcons(false);
         }
       }
 
