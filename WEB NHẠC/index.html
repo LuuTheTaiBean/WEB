@@ -219,12 +219,7 @@
             : list.classList.remove("show"); // Thu gọn các danh sách khác
         });
       }
-      function displaySongByTitle(title) {
-        let song = songs.find((song) => song.title === title);
-        if (!song) return;
-        currentIndex = songs.indexOf(song);
-        displaySong();
-      }
+
       function displaySong() {
         if (songs.length === 0) return;
         const song = songs[currentIndex];
@@ -283,42 +278,91 @@
         .addEventListener("keydown", handleKeyPress);
 
       loadSongs();
+
+      // Cập nhật lại hàm toggleAudio để hoạt động đúng cho tất cả các bài hát
       function toggleAudio() {
         if (!audio || !playIcon) return;
-        if (audio.paused) {
-          audio.play().catch((err) => console.error(err));
-          playIcon.classList.remove("fa-play");
-          playIcon.classList.add("fa-pause");
+
+        if (audio.paused || audio.ended) {
+          audio
+            .play()
+            .then(() => {
+              playIcon.classList.remove("fa-play");
+              playIcon.classList.add("fa-pause");
+            })
+            .catch((err) => console.error("Lỗi phát nhạc:", err));
         } else {
           audio.pause();
           playIcon.classList.remove("fa-pause");
           playIcon.classList.add("fa-play");
         }
       }
-      // Khi audio kết thúc, tự động chuyển icon về "play"
-      audio.addEventListener("ended", () => {
-        playIcon.classList.remove("fa-pause");
-        playIcon.classList.add("fa-play");
-      });
-      // Hàm cho điện thoại
+
+      // Cho điện thoại
       function toggleAudioMobile() {
-        if (mobileAudio.paused) {
+        if (!mobileAudio || !playIconMobile) return;
+
+        if (mobileAudio.paused || mobileAudio.ended) {
           mobileAudio
             .play()
-            .catch((err) => console.error("Lỗi phát nhạc:", err));
-          playIconMobile.classList.remove("fa-play");
-          playIconMobile.classList.add("fa-pause");
+            .then(() => {
+              playIconMobile.classList.remove("fa-play");
+              playIconMobile.classList.add("fa-pause");
+            })
+            .catch((err) =>
+              console.error("Lỗi phát nhạc trên điện thoại:", err)
+            );
         } else {
           mobileAudio.pause();
           playIconMobile.classList.remove("fa-pause");
           playIconMobile.classList.add("fa-play");
         }
       }
-      // Khi nhạc kết thúc, đổi lại icon thành "play"
+
+      // Khi phát bài mới, đảm bảo icon cập nhật đúng
+      function playSong(songUrl) {
+        if (!songUrl) return;
+
+        // Đặt src mới và reset thời gian
+        audio.src = songUrl;
+        mobileAudio.src = songUrl;
+        audio.currentTime = 0;
+        mobileAudio.currentTime = 0;
+
+        // Phát nhạc
+        audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+        mobileAudio
+          .play()
+          .catch((err) => console.error("Lỗi phát nhạc trên điện thoại:", err));
+
+        // Cập nhật icon
+        playIcon.classList.remove("fa-play");
+        playIcon.classList.add("fa-pause");
+        playIconMobile.classList.remove("fa-play");
+        playIconMobile.classList.add("fa-pause");
+      }
+
+      // Sự kiện khi bài hát kết thúc -> cập nhật icon
+      audio.addEventListener("ended", () => {
+        playIcon.classList.remove("fa-pause");
+        playIcon.classList.add("fa-play");
+      });
+
       mobileAudio.addEventListener("ended", () => {
         playIconMobile.classList.remove("fa-pause");
         playIconMobile.classList.add("fa-play");
       });
+
+      // Chuyển bài khi click vào tiêu đề
+      function displaySongByTitle(title) {
+        let song = songs.find((song) => song.title === title);
+        if (!song) return;
+
+        currentIndex = songs.indexOf(song);
+        displaySong();
+        playSong(song.official); // Phát bài mới
+      }
+
       // Hàm phát bài ngẫu nhiên
       function playRandomSong() {
         if (songs.length === 0) return;
