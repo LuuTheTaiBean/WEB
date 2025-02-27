@@ -35,12 +35,22 @@
               class="navbar-nav me-5 mb-2 mb-lg-0 d-flex justify-content-between w-100"
             >
               <!-- OFFICIAL AUDIO -->
-              <audio id="audioPlayer"></audio>
+              <audio id="audioPlayer" preload="auto">
+                <source src="path/to/your-audio-file.mp3" type="audio/mpeg" />
+              </audio>
               <li class="nav-item icon">
                 <a class="nav-link active" href="#" onclick="toggleAudio()">
                   <i class="fa-solid fa-play" id="playIcon"></i>
                 </a>
               </li>
+
+              <!-- OFFICIAL AUDIO -->
+              <!-- <audio id="audioPlayer"></audio>
+              <li class="nav-item icon">
+                <a class="nav-link active" href="#" onclick="toggleAudio()">
+                  <i class="fa-solid fa-play" id="playIcon"></i>
+                </a>
+              </li> -->
               <!-- COVER AUDIO -->
               <li class="nav-item icon">
                 <a class="nav-link" href="#">
@@ -136,11 +146,19 @@
     </div>
     <!-- Các biểu tượng cố định ở dưới cùng trên điện thoại -->
     <div class="icon-bar d-lg-none bg-primary px-5 py-2">
-      <!-- Audio Player -->
-      <audio id="mobileAudioPlayer"></audio>
+      <!-- Mobile Audio Player -->
+      <audio id="mobileAudioPlayer" preload="auto">
+        <source src="path/to/your-audio-file.mp3" type="audio/mpeg" />
+      </audio>
       <a href="#" class="icon-phone" onclick="toggleAudioMobile()">
         <i class="fa-solid fa-play" id="playIconMobile"></i>
       </a>
+
+      <!-- Audio Player -->
+      <!-- <audio id="mobileAudioPlayer"></audio>
+      <a href="#" class="icon-phone" onclick="toggleAudioMobile()">
+        <i class="fa-solid fa-play" id="playIconMobile"></i>
+      </a> -->
       <a href="#" class="icon-phone">
         <i class="fa-solid fa-microphone-lines"></i>
       </a>
@@ -341,24 +359,44 @@
       function playSong(songUrl) {
         if (!songUrl) return;
 
-        // Đặt src mới và reset thời gian
+        // Cập nhật nguồn và reset thời gian
         audio.src = songUrl;
         mobileAudio.src = songUrl;
         audio.currentTime = 0;
         mobileAudio.currentTime = 0;
 
-        // Phát nhạc
-        audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
-        mobileAudio
-          .play()
-          .catch((err) => console.error("Lỗi phát nhạc trên điện thoại:", err));
+        // Kiểm tra kích thước màn hình để phát nhạc phù hợp
+        if (window.innerWidth <= 768) {
+          mobileAudio
+            .play()
+            .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
+          audio.pause(); // Dừng nhạc trên desktop
+        } else {
+          audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+          mobileAudio.pause(); // Dừng nhạc trên mobile
+        }
 
-        // Cập nhật icon
-        playIcon.classList.remove("fa-play");
-        playIcon.classList.add("fa-pause");
-        playIconMobile.classList.remove("fa-play");
-        playIconMobile.classList.add("fa-pause");
+        // Cập nhật icon phát/tạm dừng
+        updatePlayIcons(true);
       }
+
+      function updatePlayIcons(isPlaying) {
+        const action = isPlaying ? "add" : "remove";
+        playIcon.classList[action]("fa-pause");
+        playIcon.classList.toggle("fa-play", !isPlaying);
+        playIconMobile.classList[action]("fa-pause");
+        playIconMobile.classList.toggle("fa-play", !isPlaying);
+      }
+      function handleSongEnd() {
+        if (window.innerWidth <= 768) {
+          if (!mobileAudio.paused) playRandomSong();
+        } else {
+          if (!audio.paused) playRandomSong();
+        }
+      }
+
+      audio.addEventListener("ended", handleSongEnd);
+      mobileAudio.addEventListener("ended", handleSongEnd);
 
       // Sự kiện khi bài hát kết thúc -> cập nhật icon
       audio.addEventListener("ended", () => {
@@ -376,9 +414,13 @@
         let song = songs.find((song) => song.title === title);
         if (!song) return;
 
+        // Dừng tất cả luồng âm thanh trước khi phát bài mới
+        audio.pause();
+        mobileAudio.pause();
+
         currentIndex = songs.indexOf(song);
         displaySong();
-        playSong(song.official); // Phát bài mới
+        playSong(song.official);
       }
 
       // Hàm phát bài ngẫu nhiên
