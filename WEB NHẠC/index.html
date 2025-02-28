@@ -313,38 +313,33 @@
 
       // Chú ý
       // Cập nhật lại hàm toggleAudio để hoạt động đúng cho tất cả các bài hát
-      function toggleAudio() {
-        if (!audio || (!playIcon && !mobileAudio)) return;
 
-        // Nếu trên máy tính (desktop), chỉ phát audio desktop
-        if (window.innerWidth > 768) {
-          if (audio.paused || audio.ended) {
-            audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
-            if (mobileAudio) mobileAudio.pause(); // Dừng nhạc trên mobile
-            playIcon.classList.remove("fa-play");
-            playIcon.classList.add("fa-pause");
-            syncIcons(true);
-          } else {
-            audio.pause();
-            playIcon.classList.remove("fa-pause");
-            playIcon.classList.add("fa-play");
-            syncIcons(false);
-          }
-        } else {
-          // Nếu trên điện thoại, chỉ phát audio mobile
-          if (mobileAudio.paused || mobileAudio.ended) {
-            mobileAudio
-              .play()
-              .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
-            if (audio) audio.pause(); // Dừng nhạc trên desktop
-            playIconMobile.classList.remove("fa-play");
-            playIconMobile.classList.add("fa-pause");
-            syncIcons(true);
-          } else {
-            mobileAudio.pause();
+      function toggleAudio() {
+        if (!audio || !playIcon) return;
+
+        // Nếu audio đang bị tạm dừng, phát lại bài hát
+        if (audio.paused) {
+          audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+          if (mobileAudio) mobileAudio.pause(); // Dừng nhạc trên điện thoại nếu đang phát
+
+          // Cập nhật icon play/pause cho desktop
+          playIcon.classList.remove("fa-play");
+          playIcon.classList.add("fa-pause");
+
+          // Đảm bảo icon trên điện thoại không bị thay đổi khi nhấn play trên desktop
+          if (playIconMobile) {
             playIconMobile.classList.remove("fa-pause");
             playIconMobile.classList.add("fa-play");
-            syncIcons(false);
+          }
+        } else {
+          audio.pause(); // Tạm dừng bài hát trên desktop
+          playIcon.classList.remove("fa-pause");
+          playIcon.classList.add("fa-play");
+
+          // Đảm bảo icon trên điện thoại được cập nhật khi nhấn pause trên desktop
+          if (playIconMobile) {
+            playIconMobile.classList.remove("fa-pause");
+            playIconMobile.classList.add("fa-play");
           }
         }
       }
@@ -352,23 +347,33 @@
       // Chú ý
       // Cho điện thoại
       function toggleAudioMobile() {
-        if (!audio || !mobileAudio) return;
+        if (!mobileAudio || !playIconMobile) return;
 
-        // Chỉ phát nhạc trên mobile khi đang trên thiết bị di động
-        if (window.innerWidth <= 768) {
-          if (mobileAudio.paused || mobileAudio.ended) {
-            mobileAudio
-              .play()
-              .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
-            if (audio) audio.pause(); // Dừng nhạc trên desktop
-            playIconMobile.classList.remove("fa-play");
-            playIconMobile.classList.add("fa-pause");
-            syncIcons(true);
-          } else {
-            mobileAudio.pause();
-            playIconMobile.classList.remove("fa-pause");
-            playIconMobile.classList.add("fa-play");
-            syncIcons(false);
+        // Nếu audio đang bị tạm dừng, phát lại bài hát trên mobile
+        if (mobileAudio.paused) {
+          mobileAudio
+            .play()
+            .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
+          if (audio) audio.pause(); // Dừng nhạc trên desktop nếu đang phát
+
+          // Cập nhật icon play/pause cho mobile
+          playIconMobile.classList.remove("fa-play");
+          playIconMobile.classList.add("fa-pause");
+
+          // Đảm bảo icon trên desktop không bị thay đổi khi nhấn play trên mobile
+          if (playIcon) {
+            playIcon.classList.remove("fa-pause");
+            playIcon.classList.add("fa-play");
+          }
+        } else {
+          mobileAudio.pause(); // Tạm dừng bài hát trên mobile
+          playIconMobile.classList.remove("fa-pause");
+          playIconMobile.classList.add("fa-play");
+
+          // Đảm bảo icon trên desktop được cập nhật khi nhấn pause trên mobile
+          if (playIcon) {
+            playIcon.classList.remove("fa-pause");
+            playIcon.classList.add("fa-play");
           }
         }
       }
@@ -378,25 +383,38 @@
       function playSong(songUrl) {
         if (!songUrl) return;
 
-        // Cập nhật nguồn và reset thời gian
+        // Tạm dừng tất cả các audio trước khi phát bài hát mới
+        audio.pause();
+        mobileAudio.pause();
+
+        // Cập nhật nguồn bài hát và reset thời gian
         audio.src = songUrl;
         mobileAudio.src = songUrl;
         audio.currentTime = 0;
         mobileAudio.currentTime = 0;
 
-        // Kiểm tra kích thước màn hình để phát nhạc phù hợp
+        // Kiểm tra kích thước màn hình và phát nhạc phù hợp
         if (window.innerWidth <= 768) {
           mobileAudio
             .play()
             .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
-          audio.pause(); // Dừng nhạc trên desktop
+          audio.pause(); // Dừng nhạc trên desktop nếu đang phát
+
+          // Cập nhật biểu tượng play/pause cho điện thoại
+          playIconMobile.classList.remove("fa-play");
+          playIconMobile.classList.add("fa-pause");
+          playIcon.classList.remove("fa-pause");
+          playIcon.classList.add("fa-play");
         } else {
           audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
-          mobileAudio.pause(); // Dừng nhạc trên mobile
-        }
+          mobileAudio.pause(); // Dừng nhạc trên mobile nếu đang phát
 
-        // Cập nhật icon phát/tạm dừng
-        updatePlayIcons(true);
+          // Cập nhật biểu tượng play/pause cho desktop
+          playIcon.classList.remove("fa-play");
+          playIcon.classList.add("fa-pause");
+          playIconMobile.classList.remove("fa-pause");
+          playIconMobile.classList.add("fa-play");
+        }
       }
 
       // Chú ý
@@ -416,6 +434,20 @@
           if (!audio.paused) playRandomSong();
         }
       }
+
+      audio.addEventListener("ended", handleSongEnd);
+      mobileAudio.addEventListener("ended", handleSongEnd);
+
+      // Cập nhật biểu tượng play/pause khi bài hát kết thúc
+      audio.addEventListener("ended", () => {
+        playIcon.classList.remove("fa-pause");
+        playIcon.classList.add("fa-play");
+      });
+
+      mobileAudio.addEventListener("ended", () => {
+        playIconMobile.classList.remove("fa-pause");
+        playIconMobile.classList.add("fa-play");
+      });
 
       audio.addEventListener("ended", handleSongEnd);
       mobileAudio.addEventListener("ended", handleSongEnd);
