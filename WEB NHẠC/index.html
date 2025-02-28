@@ -380,41 +380,30 @@
 
       // Chú ý
       // Khi phát bài mới, đảm bảo icon cập nhật đúng
+
       function playSong(songUrl) {
         if (!songUrl) return;
 
-        // Tạm dừng tất cả các audio trước khi phát bài hát mới
+        // Dừng mọi audio trước khi phát bài hát mới
         audio.pause();
         mobileAudio.pause();
-
-        // Cập nhật nguồn bài hát và reset thời gian
-        audio.src = songUrl;
-        mobileAudio.src = songUrl;
         audio.currentTime = 0;
         mobileAudio.currentTime = 0;
 
-        // Kiểm tra kích thước màn hình và phát nhạc phù hợp
+        // Xác định audio cần phát dựa trên kích thước màn hình
         if (window.innerWidth <= 768) {
+          mobileAudio.src = songUrl;
           mobileAudio
             .play()
             .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
-          audio.pause(); // Dừng nhạc trên desktop nếu đang phát
-
-          // Cập nhật biểu tượng play/pause cho điện thoại
-          playIconMobile.classList.remove("fa-play");
-          playIconMobile.classList.add("fa-pause");
-          playIcon.classList.remove("fa-pause");
-          playIcon.classList.add("fa-play");
+          audio.src = ""; // Xóa nguồn của audio desktop để chắc chắn nó không phát
         } else {
+          audio.src = songUrl;
           audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
-          mobileAudio.pause(); // Dừng nhạc trên mobile nếu đang phát
-
-          // Cập nhật biểu tượng play/pause cho desktop
-          playIcon.classList.remove("fa-play");
-          playIcon.classList.add("fa-pause");
-          playIconMobile.classList.remove("fa-pause");
-          playIconMobile.classList.add("fa-play");
+          mobileAudio.src = ""; // Xóa nguồn của audio mobile
         }
+
+        updatePlayIcons(true); // Cập nhật icon
       }
 
       // Chú ý
@@ -482,21 +471,32 @@
       // Hàm phát bài ngẫu nhiên
       function playRandomSong() {
         if (songs.length === 0) return;
+
         let randomIndex;
         do {
           randomIndex = Math.floor(Math.random() * songs.length);
         } while (randomIndex === currentIndex);
+
         currentIndex = randomIndex;
         displaySong();
-        audio.currentTime = 0; // Reset thời gian bài hát về 0
-        mobileAudio.currentTime = 0;
-        audio.play().catch((err) => console.error(err));
-        mobileAudio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
-        playIcon.classList.remove("fa-play");
-        playIcon.classList.add("fa-pause");
-        playIconMobile.classList.remove("fa-play");
-        playIconMobile.classList.add("fa-pause");
+
+        if (window.innerWidth <= 768) {
+          mobileAudio.src = songs[currentIndex].official;
+          mobileAudio.currentTime = 0;
+          mobileAudio
+            .play()
+            .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
+          audio.src = "";
+        } else {
+          audio.src = songs[currentIndex].official;
+          audio.currentTime = 0;
+          audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+          mobileAudio.src = "";
+        }
+
+        updatePlayIcons(true);
       }
+
       // Sự kiện khi bài hát kết thúc -> phát bài ngẫu nhiên
       audio.addEventListener("ended", playRandomSong);
       mobileAudio.addEventListener("ended", playRandomSong);
