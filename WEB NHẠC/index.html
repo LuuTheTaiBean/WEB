@@ -296,6 +296,7 @@
 
       loadSongs();
 
+      // Chú ý
       function syncIcons(isPlaying) {
         if (isPlaying) {
           playIcon.classList.remove("fa-play");
@@ -310,6 +311,7 @@
         }
       }
 
+      // Chú ý
       // Cập nhật lại hàm toggleAudio để hoạt động đúng cho tất cả các bài hát
       function toggleAudio() {
         if (!audio || (!playIcon && !mobileAudio)) return;
@@ -333,6 +335,7 @@
         }
       }
 
+      // Chú ý
       // Cho điện thoại
       function toggleAudioMobile() {
         if (!audio || !mobileAudio) return;
@@ -356,6 +359,7 @@
         }
       }
 
+      // Chú ý
       // Khi phát bài mới, đảm bảo icon cập nhật đúng
       function playSong(songUrl) {
         if (!songUrl) return;
@@ -381,6 +385,7 @@
         updatePlayIcons(true);
       }
 
+      // Chú ý
       function updatePlayIcons(isPlaying) {
         const action = isPlaying ? "add" : "remove";
         playIcon.classList[action]("fa-pause");
@@ -388,6 +393,8 @@
         playIconMobile.classList[action]("fa-pause");
         playIconMobile.classList.toggle("fa-play", !isPlaying);
       }
+
+      // Chú ý
       function handleSongEnd() {
         if (window.innerWidth <= 768) {
           if (!mobileAudio.paused) playRandomSong();
@@ -410,6 +417,7 @@
         playIconMobile.classList.add("fa-play");
       });
 
+      // Chú ý
       // Chuyển bài khi click vào tiêu đề
       function displaySongByTitle(title) {
         let song = songs.find((song) => song.title === title);
@@ -424,6 +432,7 @@
         playSong(song.official);
       }
 
+      // Chú ý
       // Hàm phát bài ngẫu nhiên
       function playRandomSong() {
         if (songs.length === 0) return;
