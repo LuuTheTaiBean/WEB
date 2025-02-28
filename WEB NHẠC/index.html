@@ -316,22 +316,36 @@
       function toggleAudio() {
         if (!audio || (!playIcon && !mobileAudio)) return;
 
-        if (audio.paused || audio.ended) {
-          audio.play();
-          if (mobileAudio) mobileAudio.play();
-          if (playIcon) {
+        // Nếu trên máy tính (desktop), chỉ phát audio desktop
+        if (window.innerWidth > 768) {
+          if (audio.paused || audio.ended) {
+            audio.play().catch((err) => console.error("Lỗi phát nhạc:", err));
+            if (mobileAudio) mobileAudio.pause(); // Dừng nhạc trên mobile
             playIcon.classList.remove("fa-play");
             playIcon.classList.add("fa-pause");
-          }
-          if (typeof syncIcons === "function") syncIcons(true);
-        } else {
-          audio.pause();
-          if (mobileAudio) mobileAudio.pause();
-          if (playIcon) {
+            syncIcons(true);
+          } else {
+            audio.pause();
             playIcon.classList.remove("fa-pause");
             playIcon.classList.add("fa-play");
+            syncIcons(false);
           }
-          if (typeof syncIcons === "function") syncIcons(false);
+        } else {
+          // Nếu trên điện thoại, chỉ phát audio mobile
+          if (mobileAudio.paused || mobileAudio.ended) {
+            mobileAudio
+              .play()
+              .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
+            if (audio) audio.pause(); // Dừng nhạc trên desktop
+            playIconMobile.classList.remove("fa-play");
+            playIconMobile.classList.add("fa-pause");
+            syncIcons(true);
+          } else {
+            mobileAudio.pause();
+            playIconMobile.classList.remove("fa-pause");
+            playIconMobile.classList.add("fa-play");
+            syncIcons(false);
+          }
         }
       }
 
@@ -340,22 +354,22 @@
       function toggleAudioMobile() {
         if (!audio || !mobileAudio) return;
 
-        if (mobileAudio.paused || mobileAudio.ended) {
-          mobileAudio.play();
-          audio.play();
-          if (playIconMobile) {
+        // Chỉ phát nhạc trên mobile khi đang trên thiết bị di động
+        if (window.innerWidth <= 768) {
+          if (mobileAudio.paused || mobileAudio.ended) {
+            mobileAudio
+              .play()
+              .catch((err) => console.error("Lỗi phát nhạc mobile:", err));
+            if (audio) audio.pause(); // Dừng nhạc trên desktop
             playIconMobile.classList.remove("fa-play");
             playIconMobile.classList.add("fa-pause");
-          }
-          if (typeof syncIcons === "function") syncIcons(true);
-        } else {
-          mobileAudio.pause();
-          audio.pause();
-          if (playIconMobile) {
+            syncIcons(true);
+          } else {
+            mobileAudio.pause();
             playIconMobile.classList.remove("fa-pause");
             playIconMobile.classList.add("fa-play");
+            syncIcons(false);
           }
-          if (typeof syncIcons === "function") syncIcons(false);
         }
       }
 
