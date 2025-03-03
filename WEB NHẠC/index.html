@@ -199,15 +199,15 @@
                 )
                 .join("");
               return `
-    <li class='list-group-item fw-bold d-flex justify-content-between' onclick="toggleSongs('${artist}')">
-      ${artist} <span class='badge bg-primary'>${artistSongs.length}</span>
-    </li>
-    <ul class='list-unstyled song-list ${
-      hideSongs ? "" : ""
-    }' id='songs-${artist}'>
-      ${songItems}
-    </ul>
-  `;
+        <li class='list-group-item fw-bold d-flex justify-content-between' onclick="toggleSongs('${artist}')">
+          ${artist} <span class='badge bg-primary'>${artistSongs.length}</span>
+        </li>
+        <ul class='list-unstyled song-list ${
+          hideSongs ? "" : ""
+        }' id='songs-${artist}'>
+          ${songItems}
+        </ul>
+      `;
             })
             .join("");
         };
@@ -222,12 +222,11 @@
         });
       }
 
-      function displaySong() {
+      async function displaySong() {
         if (songs.length === 0) return;
         const song = songs[currentIndex];
         document.getElementById("songTitle").textContent = song.title;
         document.getElementById("songArtist").textContent = song.artist;
-        document.getElementById("songLyrics").innerHTML = song.lyrics;
         document.getElementById("songNumber").textContent = song.number;
         document.getElementById("songRating").textContent = song.rating;
         document.getElementById("songYear").textContent = song.year;
@@ -237,6 +236,18 @@
           song.description;
         document.getElementById("audioPlayer").src = song.official;
         document.getElementById("mobileAudioPlayer").src = song.official;
+
+        // Fetch lời bài hát
+        try {
+          const lyricsResponse = await fetch(song.lyrics);
+          if (!lyricsResponse.ok) throw new Error("Không thể tải lời bài hát");
+          const lyrics = await lyricsResponse.text();
+          document.getElementById("songLyrics").textContent = lyrics;
+        } catch (error) {
+          console.error("Lỗi tải lời bài hát:", error);
+          document.getElementById("songLyrics").textContent =
+            "Lời bài hát không khả dụng.";
+        }
       }
       function searchSong(event) {
         let input = event.target.value.toLowerCase();
@@ -485,37 +496,6 @@
       // Sự kiện khi bài hát kết thúc -> phát bài ngẫu nhiên
       audio.addEventListener("ended", playRandomSong);
       mobileAudio.addEventListener("ended", playRandomSong);
-
-      // 3/3/2025
-      async function displaySong() {
-        if (songs.length === 0) return;
-        const song = songs[currentIndex];
-
-        document.getElementById("songTitle").textContent = song.title;
-        document.getElementById("songArtist").textContent = song.artist;
-        document.getElementById("songNumber").textContent = song.number;
-        document.getElementById("songRating").textContent = song.rating;
-        document.getElementById("songYear").textContent = song.year;
-
-        const songLink = document.getElementById("songLink");
-        songLink.innerHTML = `<a href="${song.link}" target="_blank">${song.link}</a>`;
-        document.getElementById("songDescription").textContent =
-          song.description;
-        document.getElementById("audioPlayer").src = song.official;
-        document.getElementById("mobileAudioPlayer").src = song.official;
-
-        // Fetch lời bài hát
-        try {
-          const lyricsResponse = await fetch(song.lyrics);
-          if (!lyricsResponse.ok) throw new Error("Không thể tải lời bài hát");
-          const lyrics = await lyricsResponse.text();
-          document.getElementById("songLyrics").textContent = lyrics;
-        } catch (error) {
-          console.error("Lỗi tải lời bài hát:", error);
-          document.getElementById("songLyrics").textContent =
-            "Lời bài hát không khả dụng.";
-        }
-      }
     </script>
   </body>
 </html>
