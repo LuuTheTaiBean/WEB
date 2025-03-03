@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Units</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+      }
+      #sidebar {
+        width: 20%;
+        border-right: 1px solid #ccc;
+        padding: 20px;
+        background-color: #f4f4f4;
+        height: 100vh;
+      }
+      #sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      #sidebar li {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+      }
+      #sidebar li:hover {
+        background-color: #ddd;
+      }
+      .sub-list {
+        display: none;
+        padding-left: 20px;
+      }
+      .sub-list li {
+        padding: 8px;
+        border-bottom: none;
+      }
+      #content {
+        flex-grow: 1;
+        padding: 20px;
+      }
+      .container {
+        display: grid;
+        grid-template-rows: auto 4fr 6fr;
+        gap: 10px;
+        padding: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+      .unit {
+        grid-column: span 3;
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .lyrics {
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: left;
+      }
+      .image {
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+        #sidebar {
+          width: 100%;
+          height: auto;
+        }
+        .container {
+          grid-template-rows: auto 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar">
+      <ul>
+        <li onclick="toggleSubList('book1')">Streamline English 1</li>
+        <ul id="book1" class="sub-list"></ul>
+        <li onclick="toggleSubList('book2')">Streamline English 2</li>
+        <ul id="book2" class="sub-list"></ul>
+        <li onclick="toggleSubList('book3')">Streamline English 3</li>
+        <ul id="book3" class="sub-list"></ul>
+        <li onclick="toggleSubList('book4')">Streamline English 4</li>
+        <ul id="book4" class="sub-list"></ul>
+      </ul>
+    </div>
+    <div id="content">
+      <div id="units-container"></div>
+    </div>
+
+    <script>
+      fetch("data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const books = { book1: [], book2: [], book3: [], book4: [] };
+
+          data.forEach((item) => {
+            if (books[item.book]) {
+              books[item.book].push(item);
+            }
+          });
+
+          Object.keys(books).forEach((book) => {
+            const bookList = document.getElementById(book);
+            books[book].forEach((item) => {
+              const listItem = document.createElement("li");
+              listItem.textContent = item.unit;
+              listItem.addEventListener("click", () => {
+                document.getElementById("units-container").innerHTML = `
+                                <div class="container">
+                                    <div class="unit">${item.unit}</div>
+                                    <div class="lyrics">${item.lyrics}</div>
+                                    <div class="image"><img src="${item.image}" alt="${item.alt}"></div>
+                                </div>
+                            `;
+              });
+              bookList.appendChild(listItem);
+            });
+          });
+        })
+        .catch((error) => console.error("Error loading data:", error));
+
+      function toggleSubList(bookId) {
+        const subList = document.getElementById(bookId);
+        subList.style.display =
+          subList.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>
