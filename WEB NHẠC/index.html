@@ -242,7 +242,7 @@
           const lyricsResponse = await fetch(song.lyrics);
           if (!lyricsResponse.ok) throw new Error("Không thể tải lời bài hát");
           const lyrics = await lyricsResponse.text();
-          document.getElementById("songLyrics").textContent = lyrics;
+          document.getElementById("songLyrics").innerHTML = lyrics;
         } catch (error) {
           console.error("Lỗi tải lời bài hát:", error);
           document.getElementById("songLyrics").textContent =
