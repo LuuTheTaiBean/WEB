@@ -1,27 +1,5 @@
 [
   {
-    "title": "nháp",
-    "artist": "chưa nghe",
-    "lyrics": "",
-    "number": "",
-    "rating": "",
-    "year": 1,
-    "description": "",
-    "link": "",
-    "official": ""
-  },
-  {
-    "title": "nháp",
-    "artist": "chưa tải chưa nghe",
-    "lyrics": "",
-    "number": "",
-    "rating": "",
-    "year": 1,
-    "description": "",
-    "link": "",
-    "official": ""
-  },
-  {
     "title": "(I JUST) DIED IN YOUR ARMS",
     "artist": "Cutting Crew",
     "lyrics": "./Lyrics/000000.txt",
@@ -35,7 +13,7 @@
   {
     "title": "大得勝",
     "artist": "閻惠昌",
-    "lyrics": "",
+    "lyrics": "NULL",
     "number": "000001",
     "rating": "⭐⭐⭐",
     "year": "NULL",
@@ -68,7 +46,7 @@
   {
     "title": "A COMME AMOUR",
     "artist": "Richard Clayderman",
-    "lyrics": "",
+    "lyrics": "NULL",
     "number": "000004",
     "rating": "⭐⭐⭐",
     "year": 1978,
@@ -420,7 +398,7 @@
   {
     "title": "BALLADE POUR ADELINE",
     "artist": "Richard Clayderman",
-    "lyrics": "",
+    "lyrics": "NULL",
     "number": "000036",
     "rating": "⭐⭐⭐",
     "year": 1977,
@@ -475,7 +453,7 @@
   {
     "title": "BEETHOVEN VIRUS",
     "artist": "Ludwig Van Beethoven",
-    "lyrics": "",
+    "lyrics": "NULL",
     "number": "000041",
     "rating": "⭐⭐⭐",
     "year": "NULL",
