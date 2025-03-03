@@ -46,7 +46,7 @@
   {
     "title": "100 WAYS",
     "artist": "Jackson Wang",
-    "lyrics": "Audio/000002.mp3",
+    "lyrics": "./Lyrics/000002.txt",
     "number": "000002",
     "rating": "⭐⭐⭐",
     "year": 2020,
