@@ -1076,5 +1076,126 @@
     "description": "NULL",
     "link": "https://www.youtube.com/watch?v=LCyo565N_5w",
     "official": "Audio/000097.mp3"
+  },
+  {
+    "title": "BẢN GIAO HƯỞNG ĐỊNH MỆNH SỐ 5",
+    "artist": "Ludwig Van Beethoven",
+    "lyrics": "./Lyrics/000098.txt",
+    "number": "000098",
+    "rating": "⭐⭐⭐",
+    "year": 1808,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=zSdMUloqPg0",
+    "official": "Audio/000098.mp3"
+  },
+  {
+    "title": "BẢN GIAO HƯỞNG ĐỊNH MỆNH SỐ 6",
+    "artist": "Ludwig Van Beethoven",
+    "lyrics": "./Lyrics/000099.txt",
+    "number": "000099",
+    "rating": "⭐⭐⭐",
+    "year": 1808,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=sg7TXahy2W8",
+    "official": "Audio/000099.mp3"
+  },
+  {
+    "title": "BẢN GIAO HƯỞNG ĐỊNH MỆNH SỐ 7, 8",
+    "artist": "Ludwig Van Beethoven",
+    "lyrics": "./Lyrics/000100.txt",
+    "number": "000100",
+    "rating": "⭐⭐⭐",
+    "year": 1812,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=eXFn6DlCeyo&t=59s",
+    "official": "Audio/000100.mp3"
+  },
+  {
+    "title": "BẢN GIAO HƯỞNG ĐỊNH MỆNH SỐ 9",
+    "artist": "Ludwig Van Beethoven",
+    "lyrics": "./Lyrics/000101.txt",
+    "number": "000101",
+    "rating": "⭐⭐⭐",
+    "year": 1824,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=_fpM-VZI71U&t=29s",
+    "official": "Audio/000101.mp3"
+  },
+  {
+    "title": "BÀI CA DÀNH CHO NHỮNG XÁC NGƯỜI",
+    "artist": "Trịnh Công Sơn",
+    "lyrics": "./Lyrics/000102.txt",
+    "number": "000102",
+    "rating": "⭐⭐⭐",
+    "year": "NULL",
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=5wwHHoVTjVI",
+    "official": "Audio/000102.mp3"
+  },
+  {
+    "title": "BẢN TÌNH CUỐI",
+    "artist": "Lệ Quyên",
+    "lyrics": "./Lyrics/000103.txt",
+    "number": "000103",
+    "rating": "⭐⭐⭐",
+    "year": 1968,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=xfipudctTrM",
+    "official": "Audio/000103.mp3"
+  },
+  {
+    "title": "BẢN GIAO HƯỞNG ĐỊNH MỆNH SỐ 13",
+    "artist": "Ludwig Van Beethoven",
+    "lyrics": "./Lyrics/000104.txt",
+    "number": "000104",
+    "rating": "⭐⭐⭐",
+    "year": 1974,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=TSghQKexTxg",
+    "official": "Audio/000104.mp3"
+  },
+  {
+    "title": "BAO GIỜ KẾT HÔN",
+    "artist": "Lý Tuấn Kiệt",
+    "lyrics": "./Lyrics/000105.txt",
+    "number": "000105",
+    "rating": "⭐⭐",
+    "year": 2017,
+    "description": "Đám cưới",
+    "link": "https://www.youtube.com/watch?v=8zQCPxPdNqY",
+    "official": "Audio/000105.mp3"
+  },
+  {
+    "title": "BẤT NHIỄM",
+    "artist": "Mao Bất Dịch",
+    "lyrics": "./Lyrics/000106.txt",
+    "number": "000106",
+    "rating": "⭐⭐⭐",
+    "year": 2018,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=DFYEiqW2P60",
+    "official": "Audio/000106.mp3"
+  },
+  {
+    "title": "BAY ĐI THẦM LẶNG",
+    "artist": "Trịnh Công Sơn",
+    "lyrics": "./Lyrics/000107.txt",
+    "number": "000107",
+    "rating": "⭐⭐",
+    "year": 1972,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=n2CnZTCK94w",
+    "official": "Audio/000107.mp3"
+  },
+  {
+    "title": "BBOOM BBOOM",
+    "artist": "Momoland",
+    "lyrics": "./Lyrics/000108.txt",
+    "number": "000108",
+    "rating": "⭐⭐",
+    "year": 2018,
+    "description": "NULL",
+    "link": "https://www.youtube.com/watch?v=JQGRg8XBnB4",
+    "official": "Audio/000108.mp3"
   }
 ]
