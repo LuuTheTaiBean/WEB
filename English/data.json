@@ -2,7 +2,7 @@
   {
     "book": "book1",
     "unit": "Unit 1: Hello",
-    "lyrics": "A Hello. I’m David Clark.<br>B Hello. I’m Linda Martin.<br>C Are you a teacher?<br>D No, I’m not.<br>C Oh, are you a student?<br>D Yes. I am.<br>E Are you from England?<br>F No, I’m not.<br>E Where are you from?<br>F I’m from Canada.<br>G Hello, John!<br>H Hello, Peter. How are you?<br>G I’m very well, thanks. And you?<br>H I’m fine, thanks.<br>",
+    "lyrics": "<b>A</b> Hello. I’m David Clark.<br><b>B</b> Hello. I’m Linda Martin.<br><br><b>C</b> Are you a teacher?<br><b>D</b> No, I’m not.<br><b>C</b> Oh, are you a student?<br><b>D</b> Yes. I am.<br><br><b>E</b> Are you from England?<br><b>F</b> No, I’m not.<br><b>E</b> Where are you from?<br><b>F</b> I’m from Canada.<br><br><b>G</b> Hello, John!<br><b>H</b> Hello, Peter. How are you?<br><b>G</b> I’m very well, thanks. And you?<br><b>H</b> I’m fine, thanks.<br>",
     "image": "./img/01__1--Image.svg",
     "alt": "Greetings"
   },

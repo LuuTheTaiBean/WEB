@@ -3,21 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+    />
     <title>English Units</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: Delius;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: row;
+        max-width: 100vw;
+        max-height: 100vh;
       }
       #sidebar {
-        width: 20%;
+        width: 15%;
         border-right: 1px solid #ccc;
         padding: 20px;
-        background-color: #f4f4f4;
-        height: 100vh;
+        background-color: #6668fb;
       }
       #sidebar ul {
         list-style: none;
@@ -29,7 +34,7 @@
         border-bottom: 1px solid #ddd;
       }
       #sidebar li:hover {
-        background-color: #ddd;
+        background-color: #ff7575;
       }
       .sub-list {
         display: none;
@@ -41,34 +46,34 @@
       }
       #content {
         flex-grow: 1;
-        padding: 20px;
       }
       .container {
         display: grid;
         grid-template-rows: auto 4fr 6fr;
         gap: 10px;
-        padding: 20px;
-        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        height: 700px;
       }
       .unit {
+        font-size: 40px;
+        font-weight: 300;
         grid-column: span 3;
-        padding: 20px;
-        border: 1px solid #ccc;
+        padding: 10px;
         text-align: center;
       }
       .lyrics {
-        padding: 20px;
+        padding: 10px;
         border: 1px solid #ccc;
         text-align: left;
       }
       .image {
-        padding: 20px;
+        padding: 10px;
         border: 1px solid #ccc;
         text-align: center;
       }
       img {
         max-width: 100%;
-        height: auto;
+        max-height: 100vh;
       }
       @media (max-width: 768px) {
         body {
@@ -87,13 +92,13 @@
   <body>
     <div id="sidebar">
       <ul>
-        <li onclick="toggleSubList('book1')">Streamline English 1</li>
+        <li onclick="toggleSubList('book1')"><b>Streamline English 1</b></li>
         <ul id="book1" class="sub-list"></ul>
-        <li onclick="toggleSubList('book2')">Streamline English 2</li>
+        <li onclick="toggleSubList('book2')"><b>Streamline English 2</b></li>
         <ul id="book2" class="sub-list"></ul>
-        <li onclick="toggleSubList('book3')">Streamline English 3</li>
+        <li onclick="toggleSubList('book3')"><b>Streamline English 3</b></li>
         <ul id="book3" class="sub-list"></ul>
-        <li onclick="toggleSubList('book4')">Streamline English 4</li>
+        <li onclick="toggleSubList('book4')"><b>Streamline English 4</b></li>
         <ul id="book4" class="sub-list"></ul>
       </ul>
     </div>
