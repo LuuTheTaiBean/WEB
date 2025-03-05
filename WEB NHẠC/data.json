@@ -13,7 +13,7 @@
   {
     "title": "大得勝",
     "artist": "閻惠昌",
-    "lyrics": "NULL",
+    "lyrics": "./Lyrics/NULL.txt",
     "number": "000001",
     "rating": "⭐⭐⭐",
     "year": "NULL",
@@ -46,7 +46,7 @@
   {
     "title": "A COMME AMOUR",
     "artist": "Richard Clayderman",
-    "lyrics": "NULL",
+    "lyrics": "./Lyrics/NULL.txt",
     "number": "000004",
     "rating": "⭐⭐⭐",
     "year": 1978,
